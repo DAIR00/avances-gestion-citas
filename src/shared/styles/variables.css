@@ -1,0 +1,28 @@
+:root {
+  /*colores institucionales SENA */
+  --sena-green: #39a900;
+  --sena-dark: #1a1a1a;
+  --sena-gray: #f5f5f5;
+  --sena-white: #ffffff;
+
+  /* Estados */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  /* Tipografía */
+  --font-sans: system-ui, -apple-system, sans-serif;
+
+  /*Espaciado*/
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  /*bordes*/
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}

@@ -1,0 +1,30 @@
+@import "./variables.css";
+@import "./buttons.css";
+@import "./layout.css";
+@import "./auth.css";
+@import "./appointments.css";
+@import "./admin.css";
+@import "./dashboard.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--sena-gray);
+  color: var(--sena-dark);
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
