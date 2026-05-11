@@ -111,4 +111,58 @@ export class AdminRepository {
         if (error) throw error;
         return { logs: data, total: count };
     }
+
+    static async getConfig() {
+        const { data, error } = await supabase
+            .from("system_config")
+            .select("*")
+
+        if (error) throw error;
+        return data.reduce((acc, item) => ({ ...acc, [item.key]: item.value }), {});
+    }
+    static async updateConfig(updates, adminId) {
+        const { data: oldConfig } = await supabase
+            .from("system_config")
+            .select("*")
+            .eq("key", key)
+            .single();
+
+        const { data, error} = await supabase
+            .from("system_config")
+            .update({
+                valur,
+                update_by: adminId,
+                updated_at: new Date(),
+            })
+            .eq("key", key)
+            .select()
+            .single();
+        if (error) throw error;
+
+        await this.logAction({
+            userId: adminId,
+            action: "UPDATE_CONFIG",
+            entitytype: "config",
+            entityId: key,
+            oldData: oldConfig,
+            newData: data,
+        });
+
+        return data;
+    }
+
+    static async logAction({ userId, action, entitytype, entityId, oldData, newData }) {
+        const ip = null;
+        const userAgent = typeof navigator !== "undefined" ? navigator.userAgent : null;
+
+        await supabase.from("audit_logs").insert({
+            user_id: userId,
+            action,
+            entity_type: entitytype,
+            entityId: entityId,
+            oldData: oldData,
+            newData: newData,
+            user_agent: userAgent
+        })
+    }
 }
