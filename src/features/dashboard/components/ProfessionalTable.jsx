@@ -1,6 +1,4 @@
-import { da } from "date-fns/locale";
-
-export function ProfessionalTable({ professionals }) {
+export function ProfessionalTable({ data }) {
     return (
         <div className="table-container">
             <h3>Top Profesionales</h3>
@@ -18,7 +16,8 @@ export function ProfessionalTable({ professionals }) {
                     {data.map((prof, index) => {
                         const efficiency = 
                         prof.total > 0 
-                        ? Math.round((prof.completed / prof.total) * 100) : 0;
+                        ? Math.round((prof.completed / prof.total) * 100) 
+                        : 0;
 
                         return (
                             <tr key={prof.id}>
